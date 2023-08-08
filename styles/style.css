@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+/* 
+Font Size System
+3.052rem/48.83px	
+2.441rem/39.06px	
+1.953rem/31.25px	
+1.563rem/25.00px	
+1.25rem/20.00px	
+1rem/16.00px	
+0.8rem/12.80px	
+0.64rem/10.24px	
+0.512rem/8.19px	
+0.41rem/6.55px	
+0.328rem/5.24px	
+0.262rem/4.19px */
+
+:root {
+  --main-font: "Inter", sans-serif;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #fdf3dd, #e1faee);
+  width: 100vw;
+  height: 100vh;
+  font-family: var(--main-font);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: clamp(1rem, -0.24593rem + 5.246vw, 5rem); */
+  /* border: 1px solid red; */
+  width: 60%;
+  height: 80%;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.image {
+  /* border: 1px solid blue; */
+  height: 100%;
+  flex: 1.4;
+  margin: 0;
+  padding: 0;
+  background-image: url(/images/resort.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 15px 0 0 15px;
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 100%;
+  flex: 2;
+  /* border: 1px solid lime; */
+  background-color: #f9fafb;
+  border-radius: 0 15px 15px 0;
+  /* gap: 3.052rem; */
+  /* gap: calc(16px + (48.83 - 16) * ((100vw - 300px) / (1600 - 300))); */
+}
+
+.right > * {
+  margin-bottom: calc(
+    8.19px + (48.83 - 8.19) * ((100vh - 500px) / (1600 - 500))
+  );
+}
+
+.right > p {
+  /* font-size: 1.563rem; */
+  font-size: calc(8.19px + (20 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+  /* width: 42ch; */
+  max-width: 42ch;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  font-weight: 600;
+  margin-left: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+  margin-right: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.right button {
+  margin-bottom: calc(8.19px + (20 - 8.19) * ((100vh - 300px) / (1600 - 300)));
+  font-size: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+  margin-left: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+  background-color: #006c78;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: calc(4.19px + (10.24 - 4.19) * ((100vw - 300px) / (1600 - 300)));
+}
+
+button:hover {
+  background-color: hsl(186, 100%, 29%);
+  cursor: pointer;
+}
+
+button + p > a {
+  text-decoration: none;
+  color: #006c78;
+  font-weight: 600;
+}
+button + p > a:hover {
+  text-decoration: none;
+  color: hsl(186, 100%, 29%);
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.right p:last-child {
+  font-size: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.form {
+  height: auto;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  padding-bottom: calc(
+    10.24px + (20 - 10.24) * ((100vw - 300px) / (1600 - 300))
+  );
+  /* border: 1px solid pink; */
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /*   border: 1px solid blue; */
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /*   border: 1px solid lime; */
+  padding-left: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+}
+
+form label {
+  font-size: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+}
+
+form > div input {
+  width: 70%;
+  height: calc(12.8px + (50 - 12.8) * ((100vh - 300px) / (1600 - 300)));
+  margin-bottom: calc(8.19px + (20 - 8.19) * ((100vh - 300px) / (1600 - 300)));
+  background-color: #f5f5f5;
+  border: 1px solid #cacac9;
+  border-radius: 5px;
+}
+
+.form > div > h2 {
+  font-size: calc(8.19px + (20 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+  font-weight: 500;
+  margin-bottom: calc(8.19px + (20 - 8.19) * ((100vh - 300px) / (1600 - 300)));
+  padding-left: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+}
+
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 90svw;
+    height: 90svh;
+  }
+
+  .image {
+    width: 100%;
+    background-image: url(/images/resort.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 15px 15px 0 0;
+    /* border: 1px solid red; */
+  }
+
+  .right {
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+  }
+}

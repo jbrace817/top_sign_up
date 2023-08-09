@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
-
+@font-face {
+  font-family: NorseBold;
+  src: url("/fonts/Norse-Bold.otf");
+}
 /* 
 Font Size System
 3.052rem/48.83px	
@@ -48,15 +51,46 @@ body {
 
 .image {
   /* border: 1px solid blue; */
+  position: relative;
   height: 100%;
   flex: 1.4;
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   background-image: url(/images/resort.jpg);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   border-radius: 15px 0 0 15px;
+}
+
+.image > .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsla(0, 0%, 0%, 0.2);
+  position: absolute;
+  width: 100%;
+  top: 10%;
+  padding: calc(8.19px + (12.8 - 8.19) * ((100vh - 300px) / (1600 - 300)));
+  /* border: 1px solid red; */
+}
+
+.logo > img {
+  height: calc(8.19px + (100 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.logo > h1 {
+  font-family: NorseBold;
+  font-size: calc(8.19px + (80 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+  color: whitesmoke;
+}
+
+.image > span {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: calc(8.19px + (10.24 - 8.19) * ((100vw - 300px) / (1600 - 300)));
 }
 
 .right {
@@ -161,6 +195,11 @@ form > div input {
   border-radius: 5px;
 }
 
+form > div input:focus {
+  border: 2px solid #2874dc;
+  outline: none;
+}
+
 .form > div > h2 {
   font-size: calc(8.19px + (20 - 8.19) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 500;
@@ -169,7 +208,7 @@ form > div input {
 }
 
 /* X-Small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {
+@media (max-width: 768px) {
   .container {
     display: flex;
     flex-direction: column;
@@ -214,5 +253,13 @@ form > div input {
 
   .right button {
     font-size: calc(8.19px + (16 - 8.19) * ((100vh - 300px) / (1600 - 300)));
+  }
+
+  .logo > img {
+    height: calc(8.19px + (100 - 8.19) * ((100vh - 300px) / (1600 - 300)));
+  }
+
+  .logo > h1 {
+    font-size: calc(8.19px + (80 - 8.19) * ((100vh - 300px) / (1600 - 300)));
   }
 }

@@ -10,7 +10,7 @@
     <div class="container">
       <div class="image">
         <div class="logo">
-          <img src="/images/odin-lined.png" alt="The greek god odin logo" />
+          <img src="images/odin-lined.png" alt="The greek god odin logo" />
           <h1>ODIN</h1>
         </div>
         <span
@@ -32,7 +32,7 @@
           <div>
             <h2>Let's do this!</h2>
           </div>
-          <form id="newAccountForm" action="POST">
+          <form id="newAccountForm" action="POST" name="newAccountForm">
             <div>
               <label for="first_Name">First Name</label>
               <input
@@ -83,9 +83,12 @@
             </div>
           </form>
         </div>
-        <button type="submit" form="newAccountForm">Create Account</button>
+        <button type="submit" form="newAccountForm" id="btn">
+          Create Account
+        </button>
         <p>Already have an account? <a href="#">Log in</a></p>
       </div>
     </div>
+    <script src="js/script.js"></script>
   </body>
 </html>

@@ -29,29 +29,34 @@
         </p>
         <p>You <em>know</em>&nbsp; you want to.</p>
         <div class="form">
-          <div>
+          <div class="formHeader">
             <h2>Let's do this!</h2>
+            <p>Indicates a required field</p>
           </div>
           <form id="newAccountForm" action="POST" name="newAccountForm">
             <div>
-              <label for="first_Name">First Name</label>
+              <label for="first_Name" class="required">First Name</label>
               <input
                 type="text"
                 id="first_Name"
                 name="first_Name"
                 tabindex="1"
                 maxlength="60"
+                onblur="isRequired(fName, reqFnameMsg);"
               />
-              <label for="email">Email</label>
+              <div class="reqMsg reqFnameMsg"></div>
+              <label for="email" class="required">Email</label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                pattern="^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 tabindex="3"
                 maxlength="60"
+                placeholder="  example@email.com"
               />
-              <label for="password">Password</label>
+              <div class="reqMsg"></div>
+              <label for="password" class="required">Password</label>
               <input
                 type="password"
                 id="password"
@@ -59,10 +64,18 @@
                 tabindex="5"
                 maxlength="60"
               />
+              <div class="reqMsg"></div>
             </div>
             <div>
-              <label for="last_Name">Last Name</label>
-              <input type="text" id="last_Name" name="last_Name" tabindex="2" />
+              <label for="last_Name" class="required">Last Name</label>
+              <input
+                type="text"
+                id="last_Name"
+                name="last_Name"
+                tabindex="2"
+                maxlength="60"
+              />
+              <div class="reqMsg reqLnameMsg"></div>
               <label for="phone">Phone</label>
               <input
                 type="tel"
@@ -71,8 +84,12 @@
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 tabindex="4"
                 maxlength="60"
+                placeholder="  e.g. 999-999-9999"
               />
-              <label for="confirm_password">Confirm Password</label>
+              <div class="reqMsg"></div>
+              <label for="confirm_password" class="required"
+                >Confirm Password</label
+              >
               <input
                 type="password"
                 id="confirm_password"
@@ -80,13 +97,16 @@
                 tabindex="6"
                 maxlength="60"
               />
+              <div class="reqMsg"></div>
             </div>
           </form>
         </div>
         <button type="submit" form="newAccountForm" id="btn">
           Create Account
         </button>
-        <p>Already have an account? <a href="#">Log in</a></p>
+        <p id="right-LastPara">
+          Already have an account? <a href="#">Log in</a>
+        </p>
       </div>
     </div>
     <script src="js/script.js"></script>

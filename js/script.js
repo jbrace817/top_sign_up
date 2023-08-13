@@ -1,16 +1,29 @@
 const button = document.getElementById("btn");
-const phone = document.forms["newAccountForm"]["phone"];
+const phoneInputField = document.getElementById("phone");
 // const fName = document.forms["newAccountForm"]["first_Name"];
-const fName = document.getElementById("first_Name");
-const lName = document.getElementById("last_Name");
+const fNameInput = document.getElementById("first_Name");
+const lNameInput = document.getElementById("last_Name");
+const emailInput = document.getElementById("email");
 const allInput = document.querySelectorAll("input");
 const form = document.querySelector("form");
-const reqMsg = document.getElementsByClassName("reqMsg");
-const reqFnameMsg = document.querySelector(".reqFnameMsg");
-const reqLnameMsg = document.querySelector(".reqLnameMsg");
+
+//Divs that contain messages.
+const reqDiv = document.getElementsByClassName("reqDiv");
+const reqFnameDiv = document.querySelector(".reqFnameDiv");
+const reqLnameDiv = document.querySelector(".reqLnameDiv");
+const reqEmailDiv = document.querySelector(".reqEmailDiv");
+const reqPhoneDiv = document.querySelector(".reqPhoneDiv");
 
 //Messages
 const required = "* Required";
+const msgEmail = "* Not a valid email.";
+const msgPhone = "* Not a valid phone number.";
+
+//Regex
+const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$", "i");
+const phoneRegex = new RegExp(
+  "^(?:([?+0-9]{1})*[- .(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4})+$"
+);
 
 button.addEventListener("click", () => {
   //   console.log(typeof phone.value);
@@ -26,12 +39,12 @@ button.addEventListener("click", () => {
   //   }
   // }
 
-  if (fName.value.length <= 1) {
-    fName.classList.add("error");
+  if (fNameInput.value.length <= 1) {
+    fNameInput.classList.add("error");
     // fName.setAttribute("required", "");
-    console.log(reqMsg);
+    console.log(reqDiv);
   } else {
-    fName.classList.remove("error");
+    fNameInput.classList.remove("error");
     // fName.removeAttribute("required", "");
   }
   isRequired();
@@ -54,23 +67,77 @@ function isRequired(inputElement, msgDiv) {
       // fName.setAttribute("required", "");
     } else {
       inputElement.classList.remove("error");
-      msgDiv.textContent = null;
+      msgDiv.textContent = required;
       // fName.removeAttribute("required", "");
     }
   });
 }
 
-function validateEmail(email) {
-  const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$", "i");
+function validateByRegex(inputElement, regex, msgDiv, message) {
+  if (inputElement.value.match(regex)) {
+    inputElement.classList.remove("error");
+  } else {
+    inputElement.classList.add("error");
+    msgDiv.textContent = message;
+  }
+
+  inputElement.addEventListener("keyup", () => {
+    if (inputElement.value.match(regex)) {
+      inputElement.classList.remove("error");
+      msgDiv.textContent = null;
+    } else {
+      inputElement.classList.add("error");
+      msgDiv.textContent = message;
+    }
+  });
 }
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-fName.addEventListener("blur", () => {
-  isRequired(fName, reqFnameMsg);
+fNameInput.addEventListener("blur", () => {
+  isRequired(fNameInput, reqFnameDiv);
 });
-lName.addEventListener("blur", () => {
-  isRequired(lName, reqLnameMsg);
+lNameInput.addEventListener("blur", () => {
+  isRequired(lNameInput, reqLnameDiv);
+});
+
+emailInput.addEventListener("blur", () => {
+  validateByRegex(emailInput, emailRegex, reqEmailDiv, msgEmail);
+});
+// phoneInput.addEventListener("blur", () => {
+//   validateByRegex(phoneInput, phoneRegex, reqPhoneDiv, msgPhone);
+// });
+const phoneInput = window.intlTelInput(phoneInputField, {
+  utilsScript:
+    "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+});
+
+function validatePhone(event) {
+  event.preventDefault();
+
+  const phoneNumber = phoneInput.getNumber();
+
+  if (phoneInput.isValidNumber()) {
+    phoneInputField.classList.remove("error");
+    reqPhoneDiv.textContent = null;
+  } else {
+    phoneInputField.classList.add("error");
+    reqPhoneDiv.textContent = msgPhone;
+  }
+
+  phoneInputField.addEventListener("keyup", () => {
+    if (phoneInput.isValidNumber()) {
+      phoneInputField.classList.remove("error");
+      reqPhoneDiv.textContent = null;
+    } else {
+      phoneInputField.classList.add("error");
+      reqPhoneDiv.textContent = msgPhone;
+    }
+  });
+}
+
+phoneInputField.addEventListener("blur", (e) => {
+  validatePhone(e);
 });

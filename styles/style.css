@@ -196,16 +196,16 @@ form > div input {
   border-radius: 5px;
 }
 
-.reqMsg {
+.reqDiv {
   margin-bottom: calc(8.19px + (20 - 8.19) * ((100vh - 300px) / (1600 - 300)));
   font-size: calc(8.19px + (12.8 - 8.19) * ((100vw - 300px) / (1600 - 300)));
   color: var(--error-color);
 }
 
-form > div input.error {
+form div input.error {
   border: 2px solid var(--error-color);
 }
-form > div input.error:focus {
+form div input.error:focus {
   border: 2px solid var(--error-color);
 }
 /* form > div input:invalid {
@@ -218,9 +218,13 @@ form > div input:focus:invalid {
 #phone::placeholder,
 #email::placeholder {
   color: #cacac9;
+  font-size: calc(8.19px + (12.8 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+
+  /*0.8rem/12.80px	
+0.64rem/10.24px	*/
 }
 
-form > div input:focus {
+form div input:focus {
   border: 2px solid #2874dc;
   box-shadow: 2px 2px 2px 0px hsla(0, 0%, 0%, 0.2);
   outline: none;
@@ -251,7 +255,7 @@ form > div input:focus {
 }
 
 /* X-Small devices (portrait phones, less than 576px) */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .container {
     display: flex;
     flex-direction: column;

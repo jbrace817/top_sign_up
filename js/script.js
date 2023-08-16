@@ -39,7 +39,14 @@ button.addEventListener("click", () => {
         isRequired(lNameInput, reqLnameDiv);
         break;
       case emailInput:
-        isRequired(emailInput, reqEmailDiv);
+        if (emailInput.value.length == 0) {
+          isRequired(emailInput, reqEmailDiv);
+          emailInput.addEventListener("keyup", () => {
+            validateByRegex(emailInput, emailRegex, reqEmailDiv, msgEmail);
+          });
+        } else {
+          validateByRegex(emailInput, emailRegex, reqEmailDiv, msgEmail);
+        }
         break;
       case phoneInput:
         isRequired(phoneInput, reqPhoneDiv);

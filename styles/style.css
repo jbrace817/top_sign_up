@@ -265,7 +265,7 @@ form div input:focus {
 
   .image {
     width: 100%;
-    background-image: url(/images/resort.jpg);
+    background-image: url(../images/resort.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

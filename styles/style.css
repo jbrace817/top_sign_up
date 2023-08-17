@@ -58,7 +58,7 @@ body {
   /* margin: 0;
   padding: 0; */
   background-image: url(../images/resort.jpg);
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
   border-radius: 15px 0 0 15px;
@@ -265,7 +265,7 @@ form div input:focus {
 
   .image {
     width: 100%;
-    background-image: url(../images/resort.jpg);
+    background-image: url(../images/resort2.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

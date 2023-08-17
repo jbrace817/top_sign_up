@@ -7,6 +7,8 @@ const phoneInput = document.getElementById("phone");
 const fNameInput = document.getElementById("first_Name");
 const lNameInput = document.getElementById("last_Name");
 const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const confirmInput = document.getElementById("confirm_password");
 const allInput = document.querySelectorAll("input");
 
 //Divs that contain messages.
@@ -15,11 +17,13 @@ const reqFnameDiv = document.querySelector(".reqFnameDiv");
 const reqLnameDiv = document.querySelector(".reqLnameDiv");
 const reqEmailDiv = document.querySelector(".reqEmailDiv");
 const reqPhoneDiv = document.querySelector(".reqPhoneDiv");
+const reqPasswordDiv = document.querySelector(".reqPasswordDiv");
 
 //Messages
 const required = "* Required";
 const msgEmail = "* Not a valid email.";
 const msgPhone = "* Not a valid phone number.";
+let count = 0;
 
 //Regex
 const emailRegex =
@@ -49,7 +53,18 @@ button.addEventListener("click", () => {
         }
         break;
       case phoneInput:
-        isRequired(phoneInput, reqPhoneDiv);
+        if (phoneInput.value.length == 0) {
+          isRequired(phoneInput, reqPhoneDiv);
+          phoneInput.addEventListener("keyup", (e) => {
+            validatePhone(e);
+          });
+        }
+        break;
+      case passwordInput:
+        if (reqPasswordDiv.children.length <= 0) {
+          passwordValidation();
+        }
+
         break;
       default:
         break;
@@ -126,6 +141,84 @@ function validatePhone(event) {
   });
 }
 
+function passwordValidation() {
+  const requirements = document.createElement("p");
+  const characters = document.createElement("p");
+  const symbol = document.createElement("p");
+  const number = document.createElement("p");
+  const capitalLetter = document.createElement("p");
+  const matchsymbol = "[-’/`~!#*$@_%+=.,^&(){}[]|;:”<>?\\]";
+  const matchNumber = "[0-9]";
+  const matchCap = "[A-Z]";
+  const matchLength = ".{8,}";
+  requirements.textContent = "Password requirements:";
+  characters.textContent = "Minimum 8 characters";
+  symbol.textContent = "A symbol";
+  number.textContent = "A number";
+  capitalLetter.textContent = "One uppercase letter";
+  // requirements.style.color = "black";
+  reqPasswordDiv.append(
+    requirements,
+    characters,
+    symbol,
+    number,
+    capitalLetter
+  );
+
+  contains(symbol, matchsymbol, "str1");
+  contains(number, matchNumber, "str2");
+  contains(capitalLetter, matchCap, "str3");
+  contains(characters, matchLength, "str4");
+  if (count === 4) {
+    requirements.style.color = "green";
+    passwordInput.classList.remove("error");
+  } else {
+    requirements.style.color = "red";
+    passwordInput.classList.add("error");
+  }
+
+  console.log(typeof passwordInput.value);
+  passwordInput.addEventListener("keyup", () => {
+    contains(symbol, matchsymbol, "str1");
+    contains(number, matchNumber, "str2");
+    contains(capitalLetter, matchCap, "str3");
+    contains(characters, matchLength, "str4");
+    if (count === 4) {
+      requirements.style.color = "green";
+      passwordInput.classList.remove("error");
+    } else {
+      requirements.style.color = "red";
+      passwordInput.classList.add("error");
+    }
+  });
+}
+
+function contains(type, char, str) {
+  const span = document.createElement("span");
+  span.classList.add(str);
+  const exists = document.querySelector("." + str);
+
+  if (passwordInput.value.match(char)) {
+    type.style.color = "green";
+
+    if (!exists) {
+      span.textContent = " ✓";
+      type.append(span);
+      count++;
+    }
+  } else {
+    type.style.color = "red";
+    const spans = document.getElementsByTagName("span");
+    for (let i = 0; i < spans.length; i++) {
+      if (spans[i].className === str) {
+        const s = spans[i];
+        s.remove();
+        count--;
+      }
+    }
+  }
+}
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
@@ -146,4 +239,10 @@ emailInput.addEventListener("blur", () => {
 
 phoneInput.addEventListener("blur", (e) => {
   validatePhone(e);
+});
+
+passwordInput.addEventListener("focus", () => {
+  if (reqPasswordDiv.children.length <= 0) {
+    passwordValidation();
+  }
 });

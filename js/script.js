@@ -18,6 +18,7 @@ const reqLnameDiv = document.querySelector(".reqLnameDiv");
 const reqEmailDiv = document.querySelector(".reqEmailDiv");
 const reqPhoneDiv = document.querySelector(".reqPhoneDiv");
 const reqPasswordDiv = document.querySelector(".reqPasswordDiv");
+const reqConfirmDiv = document.querySelector(".reqConfirmDiv");
 
 //Messages
 const required = "* Required";
@@ -64,8 +65,9 @@ button.addEventListener("click", () => {
         if (reqPasswordDiv.children.length <= 0) {
           passwordValidation();
         }
-
         break;
+      case confirmInput:
+        matchPasswords(passwordInput, confirmInput);
       default:
         break;
     }
@@ -219,6 +221,32 @@ function contains(type, char, str) {
   }
 }
 
+function matchPasswords(pass1, pass2) {
+  const matchMessage = document.createElement("p");
+  if (pass2.value.length === 0) {
+    pass2.classList.add("error");
+    reqConfirmDiv.textContent = "* Required";
+  }
+
+  pass2.addEventListener("keyup", () => {
+    if (pass1.value !== pass2.value) {
+      confirmInput.classList.add("error");
+      reqConfirmDiv.textContent = "Passwords do not match!";
+      // reqConfirmDiv.append(matchMessage);
+    } else {
+      reqConfirmDiv.textContent = null;
+    }
+  });
+  pass1.addEventListener("keyup", () => {
+    if (pass2.value !== pass1.value) {
+      confirmInput.classList.add("error");
+      reqConfirmDiv.textContent = "Passwords do not match!";
+      // reqConfirsmDiv.append(matchMessage);
+    } else {
+      reqConfirmDiv.textContent = null;
+    }
+  });
+}
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });

@@ -67,6 +67,10 @@ button.addEventListener("click", () => {
         }
         break;
       case confirmInput:
+        if (confirmInput.value.length === 0) {
+          confirmInput.classList.add("error");
+          reqConfirmDiv.textContent = "* Required";
+        }
         matchPasswords(passwordInput, confirmInput);
       default:
         break;
@@ -222,12 +226,6 @@ function contains(type, char, str) {
 }
 
 function matchPasswords(pass1, pass2) {
-  const matchMessage = document.createElement("p");
-  if (pass2.value.length === 0) {
-    pass2.classList.add("error");
-    reqConfirmDiv.textContent = "* Required";
-  }
-
   pass2.addEventListener("keyup", () => {
     if (pass1.value !== pass2.value) {
       confirmInput.classList.add("error");
@@ -235,6 +233,7 @@ function matchPasswords(pass1, pass2) {
       // reqConfirmDiv.append(matchMessage);
     } else {
       reqConfirmDiv.textContent = null;
+      confirmInput.classList.remove("error");
     }
   });
   pass1.addEventListener("keyup", () => {
@@ -244,11 +243,20 @@ function matchPasswords(pass1, pass2) {
       // reqConfirsmDiv.append(matchMessage);
     } else {
       reqConfirmDiv.textContent = null;
+      confirmInput.classList.remove("error");
     }
   });
 }
+
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  for (let i = 0; i < allInput.length; i++) {
+    const a = allInput[i];
+    if (a.classList.contains("error")) {
+      e.preventDefault();
+    } else {
+      console.log(false);
+    }
+  }
 });
 
 fNameInput.addEventListener("blur", () => {
@@ -273,4 +281,8 @@ passwordInput.addEventListener("focus", () => {
   if (reqPasswordDiv.children.length <= 0) {
     passwordValidation();
   }
+});
+
+confirmInput.addEventListener("focus", () => {
+  matchPasswords(passwordInput, confirmInput);
 });

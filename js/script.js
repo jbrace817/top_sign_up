@@ -144,7 +144,6 @@ function passwordValidation() {
     passwordInput.classList.add("error");
   }
 
-  console.log(typeof passwordInput.value);
   passwordInput.addEventListener("keyup", () => {
     contains(symbol, matchsymbol, "str1");
     contains(number, matchNumber, "str2");
@@ -267,7 +266,7 @@ form.addEventListener("submit", (e) => {
     const a = allInput[i];
     if (a.classList.contains("error")) {
       e.preventDefault();
-      console.log(a);
+
       array.push(a);
     } else {
       console.log(false);

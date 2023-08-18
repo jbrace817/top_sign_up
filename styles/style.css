@@ -3,7 +3,7 @@
   font-family: NorseBold;
   src: url("../fonts/Norse-Bold.otf");
 }
-/* 
+/*
 Font Size System
 3.052rem/48.83px	
 2.441rem/39.06px	
@@ -94,6 +94,7 @@ body {
   font-size: calc(8.19px + (10.24 - 8.19) * ((100vw - 300px) / (1600 - 300)));
 }
 
+/* Right Div area */
 .right {
   display: flex;
   justify-content: center;
@@ -138,6 +139,7 @@ body {
   padding: calc(4.19px + (10.24 - 4.19) * ((100vw - 300px) / (1600 - 300)));
 }
 
+/* Button */
 button:hover {
   background-color: hsl(186, 100%, 29%);
   cursor: pointer;
@@ -159,6 +161,7 @@ button + p > a:hover {
   font-size: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
 }
 
+/* Form Section */
 .form {
   height: auto;
   width: 100%;
@@ -196,6 +199,26 @@ form > div input {
   border-radius: 5px;
 }
 
+/* Password Div for Visibilty/Toggle. */
+#password {
+  width: 100%;
+}
+
+.passwordField {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  position: relative;
+  /* border: 1px solid red; */
+}
+.passwordField i {
+  position: absolute;
+  font-size: calc(8.19px + (16 - 8.19) * ((100vw - 300px) / (1600 - 300)));
+
+  right: 6%;
+  cursor: pointer;
+}
+
 .reqDiv {
   font-size: calc(8.19px + (12.8 - 8.19) * ((100vw - 300px) / (1600 - 300)));
   color: var(--error-color);
@@ -208,20 +231,11 @@ form div input.error {
 form div input.error:focus {
   border: 2px solid var(--error-color);
 }
-/* form > div input:invalid {
-  border: 2px solid var(--error-color);
-}
-form > div input:focus:invalid {
-  border: 2px solid var(--error-color);
-} */
 
 #phone::placeholder,
 #email::placeholder {
   color: #cacac9;
   font-size: calc(8.19px + (12.8 - 8.19) * ((100vw - 300px) / (1600 - 300)));
-
-  /*0.8rem/12.80px	
-0.64rem/10.24px	*/
 }
 
 form div input:focus {
@@ -254,7 +268,14 @@ form div input:focus {
   color: #e03131;
 }
 
-/* X-Small devices (portrait phones, less than 576px) */
+/* Disable Edge seeing eye for password. */
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+/* Media query for for devices smaller than 992px in width. */
 @media (max-width: 992px) {
   .container {
     display: flex;
